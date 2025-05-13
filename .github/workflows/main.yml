@@ -1,0 +1,20 @@
+
+name: Build and Test
+
+on:
+  label:
+    types:
+      - created
+
+jobs:
+  test:
+    runs-on: self-hosted
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Run docker commands
+      run: |
+        sudo docker stop reactv1
+        sudo docker rm reactv1
+        sudo docker build -t new:1.0 .
+        sudo docker run -d -p 3004:3000 --name reactv1 new:1.0
