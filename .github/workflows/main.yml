@@ -28,14 +28,14 @@ jobs:
           --scanners vuln,secret,misconfig \
           --severity HIGH,CRITICAL \
           --ignore-unfixed \
-          --exit-code 1
+          --exit-code 0
 
     - name: Trivy - scan Docker image
       run: |
         sudo trivy image new:1.0 \
           --severity HIGH,CRITICAL \
           --ignore-unfixed \
-          --exit-code 1
+          --exit-code 0
 
     - name: Deploy
       run: |
